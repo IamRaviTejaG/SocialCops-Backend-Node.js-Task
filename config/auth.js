@@ -22,48 +22,54 @@ export let auth = {
   },
 
   login: (req, res) => {
-    UserModel.findOne({ username: req.body.username }).exec().then(data => {
-      if (data) {
-        bcrypt.compare(req.body.password, data.password).then(result => {
-          if (!result) {
-            res.status(401).json({ message: 'Incorrect credentials!' })
+    if (req.body.username && req.body.password) {
+      if (req.body.username.trim().length > 2) {
+        UserModel.findOne({ username: req.body.username }).exec().then(data => {
+          if (data) {
+            bcrypt.compare(req.body.password, data.password).then(result => {
+              if (!result) {
+                res.status(200).json({ message: 'Incorrect credentials!' })
+              } else {
+                let token = auth.generateToken({ username: data.username })
+                res.status(200).json({ message: 'Login successful!', token })
+              }
+            })
           } else {
-            let token = auth.generateToken({ username: data.username })
-            res.status(200).json({ message: 'Login successful!', token })
+            res.status(200).json({ message: 'Username doesn\'t exist in the database!' })
           }
-        }).catch(err => {
-          res.status(500).json({ message: 'Server error!', error: err })
         })
       } else {
-        res.status(401).json({ message: 'Invalid username!' })
+        res.status(200).json({ message: 'Username should be atleast 3 characters long!' })
       }
-    }).catch(err => {
-      res.status(500).json({ message: 'Server error!', error: err })
-    })
+    } else {
+      res.status(200).json({ message: 'Bad request!' })
+    }
   },
 
   register: (req, res) => {
-    UserModel.find({ username: req.body.username }).exec().then(data => {
-      if (!data.length) {
-        bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS)).then(passhash => {
-          let userData = new UserModel({
-            username: req.body.username,
-            password: passhash
-          })
-          userData.save().then(result => {
-            let token = auth.generateToken({ username: req.body.username })
-            res.status(200).json({ message: 'Signup successful!', token })
-          }).catch(err => {
-            res.status(500).json({ message: 'Server error!', error: err })
-          })
-        }).catch(err => {
-          res.status(500).json({ message: 'Server error!', error: err })
+    if (req.body.username && req.body.password) {
+      if (req.body.username.trim().length > 2) {
+        UserModel.find({ username: req.body.username }).exec().then(data => {
+          if (!data.length) {
+            bcrypt.hash(req.body.password, parseInt(process.env.SALT_ROUNDS)).then(passhash => {
+              let userData = new UserModel({
+                username: req.body.username,
+                password: passhash
+              })
+              userData.save().then(result => {
+                let token = auth.generateToken({ username: req.body.username })
+                res.status(200).json({ message: 'Signup successful!', token })
+              })
+            })
+          } else {
+            res.status(200).json({ message: 'Username already taken!' })
+          }
         })
       } else {
-        res.status(400).json({ message: 'Username already taken!' })
+        res.status(200).json({ message: 'Username should be atleast 3 characters long!' })
       }
-    }).catch(err => {
-      res.status(500).json({ message: 'Server error!', error: err })
-    })
+    } else {
+      res.status(200).json({ message: 'Bad request!' })
+    }
   }
 }

@@ -1,17 +1,17 @@
+import { authenticate } from '../config/middleware'
 import { publicRouteHandler } from '../controllers/publicRouteController'
 import { protectedRouteHandler } from '../controllers/protectedRouteController'
-let jsonparser = require('body-parser').json()
 
 export let routes = (router) => {
-  router.route('/login', jsonparser)
+  router.route('/login')
     .post(publicRouteHandler.login)
 
-  router.route('/signup', jsonparser)
+  router.route('/signup')
     .post(publicRouteHandler.signup)
 
-  router.route('/jsonpatch', jsonparser)
-    .post(protectedRouteHandler.jsonpatch)
+  router.route('/jsonpatch')
+    .patch(authenticate, protectedRouteHandler.jsonpatch)
 
-  router.route('/thumbnail', jsonparser)
-    .post(protectedRouteHandler.genthumb)
+  router.route('/thumbnail')
+    .post(authenticate, protectedRouteHandler.genthumb)
 }

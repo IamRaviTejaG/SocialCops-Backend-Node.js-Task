@@ -1,5 +1,8 @@
 import app from './config/app'
+require('dotenv').config()
 
-app.listen(4000, '0.0.0.0', () => {
-  console.log(`Server live at localhost:4000`)
+let server = app.listen(process.env.PORT, process.env.HOST, () => {
+  console.log(`Server live at http://${process.env.HOST}:${process.env.PORT}`)
 })
+
+export default server
