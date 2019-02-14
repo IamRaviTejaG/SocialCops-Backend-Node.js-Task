@@ -1,0 +1,9 @@
+language: node_js
+
+services:
+  - mongodb
+
+script:
+  - npm i
+  - npm run build
+  - npm run coverage

@@ -1,14 +1,18 @@
 {
   "name": "sc-nodejs-task",
   "version": "1.0.0",
-  "description": "",
+  "description": "JSON Patching & Image thumbnail generation microservice.",
   "main": "index.js",
   "scripts": {
     "linter": "standard --fix",
-    "test": "nyc --reporter=text mocha --require @babel/register --timeout 5000 --exit",
+    "test": "mocha --require @babel/register --timeout 5000 --exit",
+    "coverage": "nyc --reporter=text mocha --require @babel/register --timeout 5000 --exit",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js --no-deprecation",
-    "dist": "node dist/index.js --no-deprecation"
+    "start": "npm run build && node dist/index.js --no-deprecation"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ImRaviTejaG/SocialCops.git"
   },
   "author": "Ravi Teja Gannavarapu",
   "license": "MIT",
