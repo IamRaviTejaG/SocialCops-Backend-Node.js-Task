@@ -1,10 +1,10 @@
 let express = require('express')
 let app = express()
 let bodyparser = require('body-parser')
-// let morgan = require('morgan')
+let morgan = require('morgan')
 let routes = require('../routes/routes')
 
-// app.use(morgan('short'))
+app.use(morgan('tiny'))
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: true }))
 routes.routes(app)
