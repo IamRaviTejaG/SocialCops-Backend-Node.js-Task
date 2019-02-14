@@ -1,3 +1,4 @@
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/52e468bf2bfb43df83c98caecdf08c7c)](https://app.codacy.com/app/ImRaviTejaG/SocialCops?utm_source=github.com&utm_medium=referral&utm_content=ImRaviTejaG/SocialCops&utm_campaign=Badge_Grade_Dashboard)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
 
 ## Contents
