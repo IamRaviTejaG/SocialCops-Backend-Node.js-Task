@@ -1,6 +1,10 @@
 let mongoose = require('mongoose')
 let Schema = mongoose.Schema
 
+/**
+ * User Schema
+ * @constant {Schema}
+ */
 let userSchema = {
   username: {
     type: String,

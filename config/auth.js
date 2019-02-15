@@ -5,6 +5,10 @@ let userSchema = require('../schema/userSchema')
 let UserModel = dbConnection.model('user', userSchema)
 
 export let auth = {
+  /**
+   * Returns if the JWT token is valid
+   * @param token
+   */
   authorize: token => {
     return new Promise((resolve, reject) => {
       jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
@@ -17,10 +21,19 @@ export let auth = {
     })
   },
 
+  /**
+   * Returns a JWT token with the given payload
+   * @param payload
+   */
   generateToken: payload => {
     return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '24h' })
   },
 
+  /**
+   * Handles the login requests
+   * @param req
+   * @param res
+   */
   login: (req, res) => {
     if (req.body.username && req.body.password) {
       if (req.body.username.trim().length > 2) {
@@ -46,6 +59,11 @@ export let auth = {
     }
   },
 
+  /**
+   * Handles user registration requests
+   * @param req
+   * @param res
+   */
   register: (req, res) => {
     if (req.body.username && req.body.password) {
       if (req.body.username.trim().length > 2) {

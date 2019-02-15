@@ -4,6 +4,11 @@ let jsonpatch = require('fast-json-patch')
 let sharp = require('sharp')
 
 export let protectedRouteHandler = {
+  /**
+   * Handles jsonpatch requests
+   * @param req
+   * @param res
+   */
   jsonpatch: (req, res) => {
     if (req.body.obj && req.body.patch) {
       let bodyObj = req.body.obj
@@ -15,6 +20,11 @@ export let protectedRouteHandler = {
     }
   },
 
+  /**
+   * Handles thumbnail requests & generates a 50x50 image thumbnail
+   * @param req
+   * @param res
+   */
   genthumb: (req, res) => {
     if (req.body.url) {
       const timeNow = (Math.floor(new Date() / 1000)).toString()

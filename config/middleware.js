@@ -1,5 +1,11 @@
 import { auth } from './auth'
 
+/**
+ * Middleware for authenticating JWT tokens on protected routes
+ * @param req
+ * @param res
+ * @param next
+ */
 export let authenticate = (req, res, next) => {
   let token = req.get('x-jwt-token')
   if (!token) {
