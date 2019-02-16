@@ -4,11 +4,13 @@
   "description": "JSON Patching & Image thumbnail generation microservice.",
   "main": "index.js",
   "scripts": {
-    "linter": "standard --fix",
-    "test": "mocha --require @babel/register --timeout 5000 --exit",
-    "coverage": "nyc --reporter=text mocha --require @babel/register --timeout 5000 --exit",
     "build": "rimraf dist/ && babel ./ --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
-    "start": "npm run build && node dist/index.js --no-deprecation"
+    "coverage": "nyc --reporter=text mocha --require @babel/register --timeout 5000 --exit",
+    "linter": "standard --fix",
+    "start": "npm run build && node dist/index.js --no-deprecation",
+    "start-docker": "cd scripts && chmod 777 docker.sh && ./docker.sh && cd ..",
+    "stop-docker": "docker-compose down",
+    "test": "mocha --require @babel/register --timeout 5000 --exit"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,8 @@
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.11",
     "morgan": "^1.9.1",
-    "sharp": "^0.21.3"
+    "sharp": "^0.21.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

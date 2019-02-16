@@ -10,6 +10,7 @@
 3. [Running locally](#running-locally)
     - [`.env` file](#the-env-file)
     - [npm scripts](#npm-scripts)
+    - [Running using Docker](#running-using-docker)
 4. [API endpoints](#api-endpoints)
     - [/login](#1-login)
     - [/signup](#2-signup)
@@ -56,7 +57,7 @@ The `.env` file holds the important variables for the whole application which in
 **NOTE**: When running tests, make sure to point the `MONGO_DB_URL` at the test database in order to avoid garbage collection in the main database.
 
 #### npm scripts
-The `package.json` file contains five scripts: `linter`, `test`, `coverage`, `build`, `start`.
+The `package.json` file contains five scripts for running locally: `linter`, `test`, `coverage`, `build`, `start`, and two for running on docker: `start-docker` and `stop-docker`.
 
 - `"linter": "standard --fix"`
 
@@ -77,6 +78,11 @@ Builds the project.
 - `"start": "npm run build && node dist/index.js --no-deprecation"`
 
 First builds and then starts the server.
+
+#### Running using Docker
+To run using docker, use the `npm run start-docker` command. Stop using the `npm run stop-docker` command.
+
+Running the `start-docker` npm script in turn runs the `scripts/dockerize.sh` script which creates a docker image using the `Dockerfile` and `docker-compose.yml`.
 
 ### API endpoints
 #### 1. `/login`
