@@ -108,4 +108,5 @@ Headers: x-jwt-token
 ```
 Request type: POST
 Data parameters: url
+Headers: x-jwt-token
 ```

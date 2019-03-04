@@ -8,7 +8,7 @@
     "coverage": "nyc --reporter=text mocha --require @babel/register --timeout 5000 --exit",
     "linter": "standard --fix",
     "start": "npm run build && node dist/index.js --no-deprecation",
-    "start-docker": "cd scripts && chmod 777 docker.sh && ./docker.sh && cd ..",
+    "start-docker": "cd scripts && chmod 777 dockerize.sh && ./dockerize.sh && cd ..",
     "stop-docker": "docker-compose down",
     "test": "mocha --require @babel/register --timeout 5000 --exit"
   },
