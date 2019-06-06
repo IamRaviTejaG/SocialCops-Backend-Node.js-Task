@@ -1,6 +1,6 @@
 # SocialCops - JSON Patch & Thumbnail Microservice
 
-[![Build Status](https://travis-ci.org/ImRaviTejaG/SocialCops.svg?branch=master)](https://travis-ci.org/ImRaviTejaG/SocialCops)
+[![Build Status](https://travis-ci.org/IamRaviTejaG/SocialCops-Backend-Node.js-Task.svg?branch=master)](https://travis-ci.org/IamRaviTejaG/SocialCops-Backend-Node.js-Task)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/045ec063d8a64463abb7cdb1318b4279)](https://www.codacy.com/app/ImRaviTejaG/SocialCops?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ImRaviTejaG/SocialCops&amp;utm_campaign=Badge_Grade)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://opensource.org/licenses/mit-license.php)
 
